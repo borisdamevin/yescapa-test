@@ -1,0 +1,30 @@
+// ============================================================================================= //
+//                                            TOKENS                                             //
+// ============================================================================================= //
+
+@use "sass:map";
+@use "@magnesium/theme";
+@use "./ref-palette";
+
+$_default: (
+    "ref-palette": ref-palette.values()
+);
+
+@function values-light($deps: $_default, $exclude-custom-props: false) {
+    $tokens: (
+        "background": map.get($deps, "ref-palette", "background"),
+        "primary": map.get($deps, "ref-palette", "primary"),
+        "secondary": map.get($deps, "ref-palette", "secondary"),
+        "surface": map.get($deps, "ref-palette", "surface"),
+        "on-primary": map.get($deps, "ref-palette", "white"),
+        "on-secondary": map.get($deps, "ref-palette", "white")
+    );
+
+    @if not $exclude-custom-props {
+        @each $key, $value in $tokens {
+            $tokens: map.set($tokens, $key, theme.emit-variable($tokens, $key, true, "sys-color"));
+        }
+    }
+
+    @return $tokens;
+}

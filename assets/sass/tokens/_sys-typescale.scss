@@ -1,0 +1,25 @@
+// ============================================================================================= //
+//                                            TOKENS                                             //
+// ============================================================================================= //
+
+@use "sass:map";
+@use "@magnesium/theme";
+@use "./ref-typeface";
+
+$_default: (
+    "ref-typeface": ref-typeface.values()
+);
+
+@function values($deps: $_default, $exclude-custom-props: false) {
+    $tokens: (
+        "body-font": map.get($deps, "ref-typeface", "brand")
+    );
+
+    @if not $exclude-custom-props {
+        @each $key, $value in $tokens {
+            $tokens: map.set($tokens, $key, theme.emit-variable($tokens, $key, true, "sys-typescale"));
+        }
+    }
+
+    @return $tokens;
+}

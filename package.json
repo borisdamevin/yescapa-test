@@ -31,6 +31,7 @@
         "vue-router": "latest"
     },
     "dependencies": {
+        "@magnesium/theme": "^4.5.1",
         "@unsass/rem": "^2.2.0",
         "normalize.css": "^8.0.1",
         "sass": "^1.85.1"
