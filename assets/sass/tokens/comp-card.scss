@@ -25,7 +25,6 @@ $_default: (
         "title-size": map.get($deps, "sys-typescale", "headline-size"),
         "title-weight": map.get($deps, "sys-typescale", "headline-weight"),
         "title-line-height": map.get($deps, "sys-typescale", "headline-line-height"),
-        "subtitle-color": map.get($deps, "sys-color", "surface"),
         "price-text-color": map.get($deps, "sys-color", "surface"),
         "price-text-font": map.get($deps, "sys-typescale", "caption-font"),
         "price-text-size": map.get($deps, "sys-typescale", "caption-size"),

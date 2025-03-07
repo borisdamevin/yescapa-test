@@ -8,7 +8,8 @@
 @function values($exclude-custom-props: false) {
     $tokens: (
         "none": 0,
-        "small": 6px,
+        "x-small": 4px,
+        "small": 8px,
         "medium": 12px,
         "large": 26px,
         "full": 50%,

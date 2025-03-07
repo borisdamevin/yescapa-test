@@ -40,10 +40,6 @@ $_tokens: tokens.comp-card-values();
         font-weight: var(--_#{$_custom-property-prefix}-title-weight);
     }
 
-    .card__subtitle {
-        color: var(--_#{$_custom-property-prefix}-subtitle-color);
-    }
-
     .card__illus {
         display: flex;
         width: 100%;

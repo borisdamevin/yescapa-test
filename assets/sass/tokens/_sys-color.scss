@@ -15,7 +15,9 @@ $_default: (
         "background": map.get($deps, "ref-palette", "background"),
         "primary": map.get($deps, "ref-palette", "primary"),
         "secondary": map.get($deps, "ref-palette", "secondary"),
+        "tertiary": map.get($deps, "ref-palette", "tertiary"),
         "surface": map.get($deps, "ref-palette", "surface"),
+        "outline": map.get($deps, "ref-palette", "outline"),
         "on-primary": map.get($deps, "ref-palette", "white"),
         "on-secondary": map.get($deps, "ref-palette", "white")
     );

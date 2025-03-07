@@ -37,6 +37,9 @@
         "vue-router": "latest"
     },
     "dependencies": {
+        "@fortawesome/fontawesome-svg-core": "^6.7.2",
+        "@fortawesome/free-solid-svg-icons": "^6.7.2",
+        "@fortawesome/vue-fontawesome": "^3.0.8",
         "@magnesium/theme": "^4.5.1",
         "@unsass/rem": "^2.2.0",
         "@unsass/string": "^1.4.3",

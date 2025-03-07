@@ -10,6 +10,7 @@ export default defineNuxtConfig({
         '@nuxtjs/i18n'
     ],
     css: [
+        '@fortawesome/fontawesome-svg-core/styles.css',
         '@/assets/tailwind.css',
         '@/assets/sass/app.scss'
     ],

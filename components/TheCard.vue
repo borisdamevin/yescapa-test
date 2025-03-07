@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
+import TheTag from '~/components/TheTag.vue';
 
 const {locale} = useI18n();
 const currentLocale = ref(locale.value);
@@ -10,7 +11,8 @@ const props = defineProps({
     price: Number,
     currency: String,
     image: String,
-    imageAlt: String
+    imageAlt: String,
+    city: String
 });
 
 const classes = {
@@ -44,13 +46,38 @@ const classes = {
             'text-right'
         ],
         content: [
+            'flex',
+            'flex-col',
             'p-[20px]'
         ],
-        subtitle: [
+        tags: [
+            'flex',
+            'flex-row',
+            'justify-between',
             'mt-[12px]'
+        ],
+        tagType: [
+            'ml-auto'
         ]
     }
 };
+
+const themeTag = (color: any) => {
+    switch (color) {
+        case 'CoachBuilt':
+            color = 'green';
+            break;
+        case 'Van':
+            color = 'yellow';
+            break;
+        case 'Campervan':
+            color = 'pink';
+            break;
+    }
+
+    return color;
+};
+
 </script>
 
 <template>
@@ -76,7 +103,11 @@ const classes = {
                 </div>
             </div>
 
-            <h3 class="card__subtitle" :class="classes.tailwind.subtitle">{{ subtitle }}</h3>
+            <div :class="classes.tailwind.tags">
+                <the-tag :text="city" icon="location-dot" theme="transparent"/>
+
+                <the-tag :class="classes.tailwind.tagType" :text="subtitle" :theme="themeTag(subtitle)"/>
+            </div>
         </div>
     </div>
 </template>

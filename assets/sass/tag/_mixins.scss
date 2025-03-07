@@ -1,0 +1,76 @@
+// ============================================================================================= //
+//                                            MIXINS                                             //
+// ============================================================================================= //
+
+@use "sass:map";
+@use "../tokens";
+@use "@magnesium/theme";
+
+$_custom-property-prefix: "tag";
+$_tokens: tokens.comp-tag-values();
+
+@mixin theme($tokens) {
+    $tokens: theme.validation($_tokens, $tokens);
+
+    @include theme.emit-custom-props($tokens, $_custom-property-prefix);
+}
+
+@mixin styles {
+    $tokens: tokens.comp-tag-values();
+
+    .tag {
+        background-color: var(--_#{$_custom-property-prefix}-container-color);
+        line-height: var(--_#{$_custom-property-prefix}-text-line-height);
+        color: var(--_#{$_custom-property-prefix}-text-color);
+        font-family: var(--_#{$_custom-property-prefix}-text-font);
+        font-size: var(--_#{$_custom-property-prefix}-text-size);
+        font-weight: var(--_#{$_custom-property-prefix}-text-weight);
+        border-color: var(--_#{$_custom-property-prefix}-outline-color);
+        border-radius: var(--_#{$_custom-property-prefix}-outline-shape);
+        border-width: var(--_#{$_custom-property-prefix}-outline-width);
+
+        // Only use the dedicated logical properties.
+        @at-root & {
+            @each $token, $value in $tokens {
+                --_#{$_custom-property-prefix}-#{$token}: #{map.get($tokens, $token)};
+            }
+        }
+    }
+
+    .tag--green {
+        @include theme((
+            "container-color": #effbf5,
+            "outline-color": #b7e6d4,
+            "text-color": #02482b
+        ));
+    }
+
+    .tag--yellow {
+        @include theme((
+            "container-color": #fef8e7,
+            "outline-color": #f7d695,
+            "text-color": #7c621d
+        ));
+    }
+
+    .tag--pink {
+        @include theme((
+            "container-color": #fef0f6,
+            "outline-color": #f3b7cb,
+            "text-color": #a40026
+        ));
+    }
+
+    .tag--transparent {
+        @include theme((
+            "container-color": transparent,
+            "outline-color": transparent,
+            "icon-color": map.get(tokens.sys-color-values-light(), 'tertiary')
+        ));
+    }
+
+    .tag__icon {
+        color: var(--_#{$_custom-property-prefix}-icon-color);
+        font-size: var(--_#{$_custom-property-prefix}-icon-size);
+    }
+}
