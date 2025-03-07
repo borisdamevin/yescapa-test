@@ -18,8 +18,8 @@ $_default: (
 @function values($deps: $_default, $exclude-custom-props: false) {
     $tokens: (
         "container-color": #fff,
-        "container-shape": map.get($deps, "sys-shape", "large"),
-        "illustration-shape": map.get($deps, "sys-shape", "large"),
+        "container-shape": map.get($deps, "sys-shape", "x-large"),
+        "illustration-shape": map.get($deps, "sys-shape", "x-large"),
         "title-color": map.get($deps, "sys-color", "surface"),
         "title-font": map.get($deps, "sys-typescale", "headline-font"),
         "title-size": map.get($deps, "sys-typescale", "headline-size"),
