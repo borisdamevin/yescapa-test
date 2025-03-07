@@ -4,6 +4,8 @@
 
 @use "sass:map";
 @use "@magnesium/theme";
+@use "@unsass/rem";
+@use "@unsass/string";
 @use "./ref-typeface";
 
 $_default: (
@@ -12,7 +14,23 @@ $_default: (
 
 @function values($deps: $_default, $exclude-custom-props: false) {
     $tokens: (
-        "body-font": map.get($deps, "ref-typeface", "brand")
+        "body-font": string.unquote(map.get($deps, "ref-typeface", "brand")),
+        "body-line-height": rem.convert(24),
+        "body-size": rem.convert(16),
+        "body-weight": 400,
+        "body-tracking": normal,
+        /// ...
+        "headline-font": string.unquote(map.get($deps, "ref-typeface", "brand")),
+        "headline-line-height": rem.convert(28),
+        "headline-size": rem.convert(22),
+        "headline-weight": 700,
+        "headline-tracking": normal,
+        /// ...
+        "caption-font": string.unquote(map.get($deps, "ref-typeface", "brand")),
+        "caption-line-height": rem.convert(18),
+        "caption-size": rem.convert(14),
+        "caption-weight": 400,
+        "caption-tracking": normal
     );
 
     @if not $exclude-custom-props {

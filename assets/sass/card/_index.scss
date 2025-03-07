@@ -2,11 +2,4 @@
 //                                             INDEX                                             //
 // ============================================================================================= //
 
-@use "../config";
-
-@forward "./comp-card" as comp-card-*;
-@forward "./ref-palette" as ref-palette-*;
-@forward "./ref-typeface" as ref-typeface-*;
-@forward "./sys-color" as sys-color-*;
-@forward "./sys-shape" as sys-shape-*;
-@forward "./sys-typescale" as sys-typescale-*;
+@forward "./mixins" show theme;

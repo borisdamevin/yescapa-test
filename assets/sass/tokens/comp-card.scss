@@ -1,0 +1,48 @@
+// ============================================================================================= //
+//                                            TOKENS                                             //
+// ============================================================================================= //
+
+@use "sass:map";
+@use "./sys-color";
+@use "./sys-shape";
+@use "./sys-typescale";
+@use "@magnesium/theme";
+@use "@unsass/string";
+
+$_default: (
+    "sys-color": sys-color.values-light(),
+    "sys-shape": sys-shape.values(),
+    "sys-typescale": sys-typescale.values()
+);
+
+@function values($deps: $_default, $exclude-custom-props: false) {
+    $tokens: (
+        "container-color": #fff,
+        "container-shape": map.get($deps, "sys-shape", "large"),
+        "illustration-shape": map.get($deps, "sys-shape", "large"),
+        "title-color": map.get($deps, "sys-color", "surface"),
+        "title-font": map.get($deps, "sys-typescale", "headline-font"),
+        "title-size": map.get($deps, "sys-typescale", "headline-size"),
+        "title-weight": map.get($deps, "sys-typescale", "headline-weight"),
+        "title-line-height": map.get($deps, "sys-typescale", "headline-line-height"),
+        "subtitle-color": map.get($deps, "sys-color", "surface"),
+        "price-text-color": map.get($deps, "sys-color", "surface"),
+        "price-text-font": map.get($deps, "sys-typescale", "caption-font"),
+        "price-text-size": map.get($deps, "sys-typescale", "caption-size"),
+        "price-text-weight": map.get($deps, "sys-typescale", "caption-weight"),
+        "price-text-line-height": map.get($deps, "sys-typescale", "caption-line-height"),
+        "price-label-color": map.get($deps, "sys-color", "surface"),
+        "price-label-font": map.get($deps, "sys-typescale", "body-font"),
+        "price-label-size": map.get($deps, "sys-typescale", "body-size"),
+        "price-label-weight": 700,
+        "price-label-line-height": map.get($deps, "sys-typescale", "body-line-height"),
+    );
+
+    @if not $exclude-custom-props {
+        @each $key, $value in $tokens {
+            $tokens: map.set($tokens, $key, theme.emit-variable($tokens, $key, true, "card"));
+        }
+    }
+
+    @return $tokens;
+}

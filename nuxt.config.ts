@@ -6,6 +6,9 @@ export default defineNuxtConfig({
     devtools: {
         enabled: true
     },
+    modules: [
+        '@nuxtjs/i18n'
+    ],
     css: [
         '@/assets/tailwind.css',
         '@/assets/sass/app.scss'
@@ -14,5 +17,8 @@ export default defineNuxtConfig({
         plugins: [
             tailwindcss()
         ]
+    },
+    i18n: {
+        vueI18n: './i18n.config.ts'
     }
 });

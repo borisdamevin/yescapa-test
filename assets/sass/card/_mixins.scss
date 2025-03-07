@@ -1,0 +1,78 @@
+// ============================================================================================= //
+//                                            MIXINS                                             //
+// ============================================================================================= //
+
+@use "sass:map";
+@use "../tokens";
+@use "@magnesium/theme";
+
+$_custom-property-prefix: "card";
+$_tokens: tokens.comp-card-values();
+
+@mixin theme($tokens) {
+    $tokens: theme.validation($_tokens, $tokens);
+
+    @include theme.emit-custom-props($tokens, $_custom-property-prefix);
+}
+
+@mixin styles {
+    $tokens: tokens.comp-card-values();
+
+    .card {
+        background-color: var(--_#{$_custom-property-prefix}-container-color);
+        max-height: 480px;
+        border-radius: var(--_#{$_custom-property-prefix}-container-shape);
+        position: relative;
+
+        // Only use the dedicated logical properties.
+        @at-root & {
+            @each $token, $value in $tokens {
+                --_#{$_custom-property-prefix}-#{$token}: #{map.get($tokens, $token)};
+            }
+        }
+    }
+
+    .card__title {
+        line-height: var(--_#{$_custom-property-prefix}-title-line-height);
+        color: var(--_#{$_custom-property-prefix}-title-color);
+        font-family: var(--_#{$_custom-property-prefix}-title-font);
+        font-size: var(--_#{$_custom-property-prefix}-title-size);
+        font-weight: var(--_#{$_custom-property-prefix}-title-weight);
+    }
+
+    .card__subtitle {
+        color: var(--_#{$_custom-property-prefix}-subtitle-color);
+    }
+
+    .card__illus {
+        display: flex;
+        width: 100%;
+        max-height: 290px;
+        border-radius: var(--_#{$_custom-property-prefix}-illustration-shape);
+        padding: 0;
+    }
+
+    .card__img {
+        display: flex;
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        margin: 0;
+    }
+
+    .card__price-text {
+        line-height: var(--_#{$_custom-property-prefix}-price-text-line-height);
+        color: var(--_#{$_custom-property-prefix}-price-text-color);
+        font-family: var(--_#{$_custom-property-prefix}-price-text-font);
+        font-size: var(--_#{$_custom-property-prefix}-price-text-size);
+        font-weight: var(--_#{$_custom-property-prefix}-price-text-weight);
+    }
+
+    .card__price-label {
+        line-height: var(--_#{$_custom-property-prefix}-price-label-line-height);
+        color: var(--_#{$_custom-property-prefix}-price-label-color);
+        font-family: var(--_#{$_custom-property-prefix}-price-label-font);
+        font-size: var(--_#{$_custom-property-prefix}-price-label-size);
+        font-weight: var(--_#{$_custom-property-prefix}-price-label-weight);
+    }
+}

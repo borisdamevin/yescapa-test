@@ -1,0 +1,17 @@
+// ============================================================================================= //
+//                                            MODULE                                             //
+// ============================================================================================= //
+
+@use "sass:map";
+@use "../tokens";
+
+$tokens: tokens.comp-card-values((
+    "sys-color": tokens.sys-color-values-light($exclude-custom-props: true),
+    "sys-shape": tokens.sys-shape-values($exclude-custom-props: true)
+), $exclude-custom-props: true);
+
+:export {
+    @each $key, $value in $tokens {
+        #{$key}: #{$value};
+    }
+}
