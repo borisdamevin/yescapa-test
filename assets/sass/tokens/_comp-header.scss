@@ -11,9 +11,17 @@ $_default: (
 );
 
 @function values($deps: $_default, $exclude-custom-props: false) {
-    @return (
+    $tokens: (
         "container-color": #fff,
         "outline-color": map.get($deps, "sys-color", "outline"),
         "height": 100px
     );
+
+    @if not $exclude-custom-props {
+        @each $key, $value in $tokens {
+            $tokens: map.set($tokens, $key, theme.emit-variable($tokens, $key, true, "header"));
+        }
+    }
+
+    @return $tokens;
 }
