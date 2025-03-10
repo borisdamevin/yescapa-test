@@ -1,0 +1,34 @@
+// ============================================================================================= //
+//                                            MIXINS                                             //
+// ============================================================================================= //
+
+@use "sass:map";
+@use "../tokens";
+@use "@magnesium/theme";
+
+$_custom-property-prefix: "header";
+$_tokens: tokens.comp-header-values();
+
+@mixin theme($tokens) {
+    $tokens: theme.validation($_tokens, $tokens);
+
+    @include theme.emit-custom-props($tokens, $_custom-property-prefix);
+}
+
+@mixin styles {
+    .header {
+        background-color: var(--_#{$_custom-property-prefix}-container-color);
+        width: 100%;
+        height: var(--_#{$_custom-property-prefix}-height);
+        border-bottom-color: var(--_#{$_custom-property-prefix}-outline-color);
+        border-bottom-style: solid;
+        border-bottom-width: 1px;
+
+        // Only use the dedicated logical properties.
+        @at-root & {
+            @each $token, $value in $_tokens {
+                --_#{$_custom-property-prefix}-#{$token}: #{map.get($_tokens, $token)};
+            }
+        }
+    }
+}

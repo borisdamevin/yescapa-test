@@ -2,10 +2,20 @@
 import LayoutDefault from '~/layouts/default.vue'
 
 const classes = {
+    header: {
+        tailwind: [
+            'mb-[20px]',
+        ]
+    },
     main: {
         tailwind: [
             'flex',
             'container'
+        ]
+    },
+    footer: {
+        tailwind: [
+            'mt-[20px]',
         ]
     }
 };
@@ -13,13 +23,13 @@ const classes = {
 
 <template>
     <LayoutDefault>
-        <the-header/>
+        <the-header :class="classes.header.tailwind"/>
 
         <main :class="classes.main.tailwind">
             <slot/>
         </main>
 
-        <the-footer/>
+        <the-footer :class="classes.footer.tailwind"/>
     </LayoutDefault>
 </template>
 

@@ -1,0 +1,19 @@
+// ============================================================================================= //
+//                                            TOKENS                                             //
+// ============================================================================================= //
+
+@use "sass:map";
+@use "./sys-color";
+@use "@magnesium/theme";
+
+$_default: (
+    "sys-color": sys-color.values-light()
+);
+
+@function values($deps: $_default, $exclude-custom-props: false) {
+    @return (
+        "container-color": #fff,
+        "outline-color": map.get($deps, "sys-color", "outline"),
+        "height": 100px
+    );
+}
