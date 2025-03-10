@@ -23,6 +23,10 @@ const getCardProps = (item: any) => ({
     city: item.vehicle_location_city,
     seats: item.vehicle_seats
 });
+
+definePageMeta({
+    layout: 'home'
+});
 </script>
 
 <template>
