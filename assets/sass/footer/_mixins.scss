@@ -1,0 +1,31 @@
+// ============================================================================================= //
+//                                            MIXINS                                             //
+// ============================================================================================= //
+
+@use "sass:map";
+@use "../tokens";
+@use "@magnesium/theme";
+
+$_custom-property-prefix: "footer";
+$_tokens: tokens.comp-footer-values();
+
+@mixin theme($tokens) {
+    $tokens: theme.validation($_tokens, $tokens);
+
+    @include theme.emit-custom-props($tokens, $_custom-property-prefix);
+}
+
+@mixin styles {
+    .footer {
+        background-color: var(--_#{$_custom-property-prefix}-container-color);
+        width: 100%;
+        height: var(--_#{$_custom-property-prefix}-height);
+
+        // Only use the dedicated logical properties.
+        @at-root & {
+            @each $token, $value in $_tokens {
+                --_#{$_custom-property-prefix}-#{$token}: #{map.get($_tokens, $token)};
+            }
+        }
+    }
+}

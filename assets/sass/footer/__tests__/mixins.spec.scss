@@ -1,0 +1,28 @@
+// ============================================================================================= //
+//                                             TEST                                              //
+// ============================================================================================= //
+
+@use "true" as *;
+@use "../mixins";
+
+@include describe("header") {
+    @include describe("theme()") {
+        @include it("Should return custom theme declarations.") {
+            @include assert {
+                @include output(false) {
+                    .test {
+                        @include mixins.theme((
+                            "height": 120px
+                        ));
+                    }
+                }
+
+                @include expect(false) {
+                    .test {
+                        --yc-header-height: 120px;
+                    }
+                }
+            }
+        }
+    }
+}

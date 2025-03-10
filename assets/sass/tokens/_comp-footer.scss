@@ -1,0 +1,24 @@
+// ============================================================================================= //
+//                                            TOKENS                                             //
+// ============================================================================================= //
+
+@use "sass:map";
+@use "./sys-color";
+@use "@magnesium/theme";
+
+$_default: ();
+
+@function values($deps: $_default, $exclude-custom-props: false) {
+    $tokens: (
+        "container-color": #f8fafc,
+        "height": 100px
+    );
+
+    @if not $exclude-custom-props {
+        @each $key, $value in $tokens {
+            $tokens: map.set($tokens, $key, theme.emit-variable($tokens, $key, true, "footer"));
+        }
+    }
+
+    @return $tokens;
+}
