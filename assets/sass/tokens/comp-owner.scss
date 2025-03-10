@@ -1,0 +1,36 @@
+// ============================================================================================= //
+//                                            TOKENS                                             //
+// ============================================================================================= //
+
+@use "sass:map";
+@use "./sys-color";
+@use "./sys-shape";
+@use "./sys-typescale";
+@use "@magnesium/theme";
+@use "@unsass/string";
+
+$_default: (
+    "sys-color": sys-color.values-light(),
+    "sys-shape": sys-shape.values(),
+    "sys-typescale": sys-typescale.values()
+);
+
+@function values($deps: $_default, $exclude-custom-props: false) {
+    $tokens: (
+        "container-color": #fff,
+        "container-shape": map.get($deps, "sys-shape", "medium"),
+        "outline-color": map.get($deps, "sys-color", "outline"),
+        "name-size": map.get($deps, "sys-typescale", "headline-size"),
+        "name-color": map.get($deps, "sys-color", "surface"),
+        "text-size": map.get($deps, "sys-typescale", "body-size"),
+        "text-color": map.get($deps, "sys-color", "secondary")
+    );
+
+    @if not $exclude-custom-props {
+        @each $key, $value in $tokens {
+            $tokens: map.set($tokens, $key, theme.emit-variable($tokens, $key, true, "owner"));
+        }
+    }
+
+    @return $tokens;
+}

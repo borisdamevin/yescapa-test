@@ -6,6 +6,7 @@ const {locale} = useI18n();
 const currentLocale = ref(locale.value);
 
 const props = defineProps({
+    id: Number,
     title: String,
     subtitle: String,
     price: Number,
@@ -65,6 +66,14 @@ const classes = {
         ],
         tagType: [
             'ml-auto'
+        ],
+        link: [
+            'absolute',
+            'top-0',
+            'left-0',
+            'h-full',
+            'w-full',
+            'z-10'
         ]
     }
 };
@@ -120,6 +129,8 @@ const themeTag = (color: any) => {
                 <the-tag :class="classes.tailwind.tagType" :text="subtitle" :theme="themeTag(subtitle)"/>
             </div>
         </div>
+
+        <a :class="classes.tailwind.link" :href="'/vehicules/' + id" target="_parent"></a>
     </div>
 </template>
 

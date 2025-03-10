@@ -1,0 +1,55 @@
+// ============================================================================================= //
+//                                            MIXINS                                             //
+// ============================================================================================= //
+
+@use "sass:map";
+@use "../tokens";
+@use "@magnesium/theme";
+
+$_custom-property-prefix: "owner";
+$_tokens: tokens.comp-owner-values();
+
+@mixin theme($tokens) {
+    $tokens: theme.validation($_tokens, $tokens);
+
+    @include theme.emit-custom-props($tokens, $_custom-property-prefix);
+}
+
+@mixin styles {
+    .owner {
+        display: flex;
+        background-color: var(--_#{$_custom-property-prefix}-container-color);
+        border-color: var(--_#{$_custom-property-prefix}-outline-color);
+        border-width: 1px;
+        border-style: solid;
+        border-radius: var(--_#{$_custom-property-prefix}-container-shape);
+        padding: 20px;
+
+        // Only use the dedicated logical properties.
+        @at-root & {
+            @each $token, $value in $_tokens {
+                --_#{$_custom-property-prefix}-#{$token}: #{map.get($_tokens, $token)};
+            }
+        }
+    }
+
+    .owner__content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-left: 20px;
+    }
+
+    .owner__name {
+        font-size: var(--_#{$_custom-property-prefix}-name-size);
+        font-weight: 700;
+        color: var(--_#{$_custom-property-prefix}-name-color);
+        margin-bottom: 6px;
+    }
+
+    .owner__language {
+        font-size: var(--_#{$_custom-property-prefix}-text-size);
+        font-weight: 400;
+        color: var(--_#{$_custom-property-prefix}-text-color);
+    }
+}

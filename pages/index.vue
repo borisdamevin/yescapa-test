@@ -13,6 +13,7 @@ const classes = {
 };
 
 const getCardProps = (item: any) => ({
+    id: item.id,
     title: item.title,
     subtitle: item.vehicle_type,
     price: item.starting_price,

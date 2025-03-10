@@ -2,10 +2,11 @@
 const classes = {
     tailwind: [
         'flex',
+        'flex-col',
+        'items-center',
         'min-h-screen',
         'h-full',
-        'w-full',
-        'justify-center'
+        'w-full'
     ]
 };
 </script>

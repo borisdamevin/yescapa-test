@@ -4,7 +4,9 @@
 
 @use "../config";
 
+@forward "./comp-avatar" as comp-avatar-*;
 @forward "./comp-card" as comp-card-*;
+@forward "./comp-owner" as comp-owner-*;
 @forward "./comp-tag" as comp-tag-*;
 @forward "./ref-palette" as ref-palette-*;
 @forward "./ref-typeface" as ref-typeface-*;

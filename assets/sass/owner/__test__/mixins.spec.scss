@@ -1,0 +1,28 @@
+// ============================================================================================= //
+//                                             TEST                                              //
+// ============================================================================================= //
+
+@use "pkg:sass-true" as *;
+@use "../mixins";
+
+@include describe("owner") {
+    @include describe("theme()") {
+        @include it("Should return custom theme declarations.") {
+            @include assert {
+                @include output(false) {
+                    .test {
+                        @include mixins.theme((
+                            "container-color": darkcyan
+                        ));
+                    }
+                }
+
+                @include expect(false) {
+                    .test {
+                        --yc-owner-container-color: darkcyan;
+                    }
+                }
+            }
+        }
+    }
+}

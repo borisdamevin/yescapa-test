@@ -1,0 +1,21 @@
+// ============================================================================================= //
+//                                            TOKENS                                             //
+// ============================================================================================= //
+
+@use "sass:map";
+@use "@magnesium/theme";
+@use "@unsass/string";
+
+@function values($exclude-custom-props: false) {
+    $tokens: (
+        "container-width": 80px
+    );
+
+    @if not $exclude-custom-props {
+        @each $key, $value in $tokens {
+            $tokens: map.set($tokens, $key, theme.emit-variable($tokens, $key, true, "avatar"));
+        }
+    }
+
+    @return $tokens;
+}
