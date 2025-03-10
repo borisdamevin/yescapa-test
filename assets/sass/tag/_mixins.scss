@@ -16,8 +16,6 @@ $_tokens: tokens.comp-tag-values();
 }
 
 @mixin styles {
-    $tokens: tokens.comp-tag-values();
-
     .tag {
         background-color: var(--_#{$_custom-property-prefix}-container-color);
         line-height: var(--_#{$_custom-property-prefix}-text-line-height);
@@ -31,8 +29,8 @@ $_tokens: tokens.comp-tag-values();
 
         // Only use the dedicated logical properties.
         @at-root & {
-            @each $token, $value in $tokens {
-                --_#{$_custom-property-prefix}-#{$token}: #{map.get($tokens, $token)};
+            @each $token, $value in $_tokens {
+                --_#{$_custom-property-prefix}-#{$token}: #{map.get($_tokens, $token)};
             }
         }
     }
