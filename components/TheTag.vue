@@ -4,7 +4,8 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 const props = defineProps({
     text: String,
     icon: String,
-    theme: String
+    theme: String,
+    shape: String
 });
 
 const classes = {
@@ -13,7 +14,11 @@ const classes = {
             'tag--green': props.theme === 'green',
             'tag--yellow': props.theme === 'yellow',
             'tag--pink': props.theme === 'pink',
+            'tag--blue': props.theme === 'blue',
             'tag--transparent': props.theme === 'transparent'
+        },
+        shape: {
+            'tag--shape-full': props.shape === 'full',
         },
         tailwind: {
             'px-[10px]': props.theme !== 'transparent',
@@ -29,7 +34,7 @@ const classes = {
 </script>
 
 <template>
-    <div class="tag" :class="[classes.host.theme, classes.host.tailwind]">
+    <div class="tag" :class="[classes.host.theme, classes.host.shape, classes.host.tailwind]">
         <font-awesome-icon class="tag__icon" :class="classes.icon.tailwind" :icon="['fas', icon]" v-if="icon"/>
 
         <span>{{ text }}</span>

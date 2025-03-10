@@ -22,10 +22,12 @@ export default defineI18nConfig(() => ({
     },
     messages: {
         en: {
-            'from_this_price': 'from'
+            'from_this_price': 'from',
+            'seats_number': '{n} seats'
         },
         fr: {
-            'from_this_price': 'à partir de'
+            'from_this_price': 'à partir de',
+            'seats_number': '{n} voyageurs'
         }
     }
 }));

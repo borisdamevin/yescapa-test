@@ -19,7 +19,8 @@ const getCardProps = (item: any) => ({
     currency: item.currency_used,
     image: item.pictures[0].url,
     imageAlt: item.title,
-    city: item.vehicle_location_city
+    city: item.vehicle_location_city,
+    seats: item.vehicle_seats
 });
 </script>
 

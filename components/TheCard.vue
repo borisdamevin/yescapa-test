@@ -12,7 +12,8 @@ const props = defineProps({
     currency: String,
     image: String,
     imageAlt: String,
-    city: String
+    city: String,
+    seats: Number
 });
 
 const classes = {
@@ -29,8 +30,14 @@ const classes = {
             'relative',
             'z-5'
         ],
+        illustrationTag: [
+            'absolute',
+            'top-[10px]',
+            'right-[10px]'
+        ],
         titleWrapper: [
             'flex',
+            'flex-1',
             'flex-row'
         ],
         title: [
@@ -84,6 +91,9 @@ const themeTag = (color: any) => {
     <div class="card" :class="classes.tailwind.host">
         <figure class="card__illus" :class="classes.tailwind.illustration">
             <img class="card__img" :src="image" :alt="imageAlt">
+
+            <the-tag :class="classes.tailwind.illustrationTag" :text="$t('seats_number', seats)" theme="blue"
+                     shape="full"/>
         </figure>
 
         <div :class="classes.tailwind.content">
@@ -104,6 +114,7 @@ const themeTag = (color: any) => {
             </div>
 
             <div :class="classes.tailwind.tags">
+
                 <the-tag :text="city" icon="location-dot" theme="transparent"/>
 
                 <the-tag :class="classes.tailwind.tagType" :text="subtitle" :theme="themeTag(subtitle)"/>

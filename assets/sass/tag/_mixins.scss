@@ -61,11 +61,25 @@ $_tokens: tokens.comp-tag-values();
         ));
     }
 
+    .tag--blue {
+        @include theme((
+            "container-color": #e3edf9,
+            "outline-color": #4f92e1,
+            "text-color": #507ab9
+        ));
+    }
+
     .tag--transparent {
         @include theme((
             "container-color": transparent,
             "outline-color": transparent,
             "icon-color": map.get(tokens.sys-color-values-light(), 'tertiary')
+        ));
+    }
+
+    .tag--shape-full {
+        @include theme((
+            "outline-shape": calc(infinity * 1px)
         ));
     }
 
