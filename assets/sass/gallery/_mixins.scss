@@ -1,0 +1,50 @@
+// ============================================================================================= //
+//                                            MIXINS                                             //
+// ============================================================================================= //
+
+@use "sass:map";
+@use "../tokens";
+@use "@magnesium/theme";
+
+$_custom-property-prefix: "gallery";
+$_tokens: tokens.comp-gallery-values();
+
+@mixin theme($tokens) {
+    $tokens: theme.validation($_tokens, $tokens);
+
+    @include theme.emit-custom-props($tokens, $_custom-property-prefix);
+}
+
+@mixin styles {
+    .gallery {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        grid-template-rows: repeat(2, 280px);
+        gap: 10px;
+
+        // Only use the dedicated logical properties.
+        @at-root & {
+            @each $token, $value in $_tokens {
+                --_#{$_custom-property-prefix}-#{$token}: #{map.get($_tokens, $token)};
+            }
+        }
+    }
+
+    .gallery__image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+
+        &:first-child {
+            grid-area: 1/1/3/4;
+        }
+
+        &:nth-child(2) {
+            grid-area: 1/4/1/6;
+        }
+
+        &:nth-child(3) {
+            grid-area: 2/4/3/6;
+        }
+    }
+}

@@ -21,6 +21,11 @@ const classes = {
             'w-full'
         ]
     },
+    gallery: {
+        tailwind: [
+            'col-span-8'
+        ]
+    },
     section: {
         tailwind: [
             'grid',
@@ -41,6 +46,10 @@ const classes = {
     }
 };
 
+const getGalleryProps = (item: any) => ({
+    images: item.pictures
+});
+
 const getOwnerProps = (item: any) => ({
     name: item.vehicle_owner_first_name,
     language: item.vehicle_owner_language,
@@ -54,6 +63,8 @@ definePageMeta({
 
 <template>
     <div :class="classes.host.tailwind">
+        <the-gallery :class="classes.gallery.tailwind" v-bind="getGalleryProps(item)"/>
+
         <section :class="classes.section.tailwind">
             <the-owner :class="classes.owner.tailwind" v-bind="getOwnerProps(item)"/>
         </section>
