@@ -21,6 +21,8 @@ $_tokens: tokens.comp-gallery-values();
         grid-template-columns: repeat(5, 1fr);
         grid-template-rows: repeat(2, 280px);
         gap: 10px;
+        border-radius: var(--_#{$_custom-property-prefix}-container-shape);
+        overflow: hidden;
 
         // Only use the dedicated logical properties.
         @at-root & {

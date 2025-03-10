@@ -3,10 +3,17 @@
 // ============================================================================================= //
 
 @use "sass:map";
+@use "./sys-shape";
 @use "@magnesium/theme";
 
-@function values($exclude-custom-props: false) {
-    $tokens: ();
+$_default: (
+    "sys-shape": sys-shape.values()
+);
+
+@function values($deps: $_default, $exclude-custom-props: false) {
+    $tokens: (
+        "container-shape": map.get($deps, "sys-shape", "medium")
+    );
 
     @if not $exclude-custom-props {
         @each $key, $value in $tokens {
